@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal Wave Contracting Company</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #1e3d72;
+            --accent-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+        }
+
+        .navbar {
+            background: white !important;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            background: none;
+        }
+
+        .navbar-toggler .fas {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9), rgba(30, 61, 114, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e3f2fd" width="1200" height="600"/><path fill="%23bbdefb" d="M0 300L50 283.3C100 266.7 200 233.3 300 216.7C400 200 500 200 600 216.7C700 233.3 800 266.7 900 283.3C1000 300 1100 300 1150 300L1200 300V600H1150C1100 600 1000 600 900 600C800 600 700 600 600 600C500 600 400 600 300 600C200 600 100 600 50 600H0V300Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 120px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="25" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="25" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            background: linear-gradient(45deg, var(--accent-color), #e67e22);
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.4);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid white;
+            color: white;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            background: transparent;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent-color), #e67e22);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-img {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-img:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Services Section */
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(44, 90, 160, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 250px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .gallery-item-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(44, 90, 160, 0.1) 0%,
+                rgba(44, 90, 160, 0.7) 70%,
+                rgba(44, 90, 160, 0.9) 100%
+            );
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .gallery-content {
+            text-align: center;
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-content h5 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .gallery-content p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .gallery-item-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(44, 90, 160, 0.3);
+        }
+
+        .gallery-item-container:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-container:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .gallery-item-container:hover .gallery-item img {
+            transform: scale(1.1);
+        }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-item-container {
+        height: 250px;
+    }
+    
+    .gallery-content h5 {
+        font-size: 1rem;
+    }
+    
+    .gallery-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Optional: Click to expand functionality */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal.active {
+    display: flex;
+}
+
+.gallery-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+}
+
+.gallery-modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+        /* Contact Section */
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            height: 100%;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 20px rgba(44, 90, 160, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--secondary-color), #1a2332);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Download Profile Button */
+        .download-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent-color), #e67e22);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .download-profile-btn:hover {
+            background: linear-gradient(135deg, #e67e22, var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+            color: white;
+        }
+
+        .download-profile-btn i {
+            font-size: 1.1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-3px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animation Classes */
+        .animate-counter {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .download-profile-btn {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--accent-color), #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+
+
+        /* slider  */
+
+        .our-partners {
+            display: grid;
+            place-items: center;
+            padding: 160px 0;
+        }
+
+        
+
+        .slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: white;
+            backdrop-filter: blur(7.4px);
+            -webkit-backdrop-filter: blur(7.4px);
+            position: relative;
+        }
+
+        .slider-items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            animation: scrolling 20s linear infinite;
+            /* white-space: nowrap; */
+        }
+
+        .slider-items img {
+            /* width: 280px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            /* transition: transform 0.3s ease; */
+            /* margin-right: 0px;  */
+             width: 12%;
+            margin: 20px;
+
+        }
+
+        .slider-items img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes scrolling {
+            0% {
+                transform: translateX(80%);
+            }
+            100% {
+                transform: translateX(-20%);
+            }
+        }
+
+        /* Remove pause on hover for continuous sliding */
+        /* .slider:hover .slider-items {
+            animation-play-state: paused;
+        } */
+
+        /* Demo logos - replace with your actual logo paths */
+        .demo-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="images/Frame 177.png" style="width: 150px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="color: white;">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content" data-aos="fade-up">
+                    <h1>Excellence in Electromechanical Contracting</h1>
+                    <p>Leading the way in industrial, commercial, and residential electrical solutions across Saudi Arabia since 2017.</p>
+                    <div class="mt-4">
+                        <a href="#about" class="btn-custom me-3">Learn More</a>
+                        <a href="#contact" class="btn-outline-custom">Get Quote</a>
+                    </div>
+                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-item">
+                            <span class="stat-number animate-counter" data-target="40+">0</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number animate-counter" data-target="200+">0</span>
+                            <span class="stat-label">Customer Enquiries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number animate-counter" data-target="71+">0</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number animate-counter" data-target="10+">0</span>
+                            <span class="stat-label">Upcoming Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Federal Wave</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-img">
+                       <div style="height: 400px; background: linear-gradient(45deg, var(--primary-color), var(--accent-color)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <img src="images/male-electrician-works-switchboard-with-electrical-connecting-cable_169016-16349.avif" alt="Industrial Image" style="max-width: 100%; max-height: 100%; object-fit: cover; border-radius: 15px;">
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3 class="mb-4">Leading Electromechanical Contractor</h3>
+                    <p class="mb-4">
+                        Federal Wave Contracting Company is a leading electromechanical contracting company based in Jubail, Saudi Arabia, with expertise in handling projects and maintenance contracts related to industrial, commercial, and residential clients.
+                    </p>
+                    <p class="mb-4">
+                        Founded as Federal Wave Specialized Contracting Est in 2017, Federal Wave Contracting Company now is led by Industrial pioneers who have considerable experience in the field of construction, Testing and commissioning, Maintenance and operation, Supply of specialized manpower, Engineers and Technicians for Instrumentation, Electrical, Mechanical, and civil works.
+                    </p>
+                    <blockquote class="border-start border-primary border-4 ps-4 mb-4" style="background: rgba(44, 90, 160, 0.1); padding: 1rem;">
+                        <p class="fst-italic mb-2">"Our mission is to excel and expand across the world by providing world class service and support our clients."</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">Er. Pavurdeen Rawther</cite><br>
+                            <small class="text-muted">Founder & General Manager</small>
+                        </footer>
+                    </blockquote>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-primary me-2"></i> ISO 9001 Certified</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> ISO 14001 Certified</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> ISO 45001 Certified</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-primary me-2"></i> Expert Team</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Quality Service</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> 24/7 Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="our-partners">
+        <h2 class="section-title" data-aos="fade-up">Our Clients</h2>
+        <div class="slider">
+            <div class="slider-items">
+                <img src="images/swa.jpg" alt="swa" >
+                <img src="images/swcc logo.png" alt="SWCC">
+                <img src="images/Saudi_Electricity_Company_Logo.svg.png" alt="SEC">
+                <img src="images/sabic.jpg" alt="SABIC">
+                <img src="images/ARMCO.jpg" alt="ARMCO">
+                <img src="images/acwa.png" alt="ACWA">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+                <img src="images/hadi.png" alt="Hadi">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+                <img src="images/hadi.png" alt="Hadi">
+                <img src="images/swa.jpg" alt="swa" >
+                <img src="images/swcc logo.png" alt="SWCC">
+                <img src="images/Saudi_Electricity_Company_Logo.svg.png" alt="SEC">
+                <img src="images/sabic.jpg" alt="SABIC">
+                <img src="images/ARMCO.jpg" alt="ARMCO">
+                <img src="images/acwa.png" alt="ACWA">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+                <img src="images/hadi.png" alt="Hadi">
+                <img src="images/swa.jpg" alt="swa" >
+                <img src="images/swcc logo.png" alt="SWCC">
+                <img src="images/Saudi_Electricity_Company_Logo.svg.png" alt="SEC">
+                <img src="images/sabic.jpg" alt="SABIC">
+                <img src="images/ARMCO.jpg" alt="ARMCO">
+                <img src="images/acwa.png" alt="ACWA">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+                <img src="images/hadi.png" alt="Hadi">
+                <img src="images/swa.jpg" alt="swa" >
+                <img src="images/swcc logo.png" alt="SWCC">
+                <img src="images/Saudi_Electricity_Company_Logo.svg.png" alt="SEC">
+                <img src="images/sabic.jpg" alt="SABIC">
+                <img src="images/ARMCO.jpg" alt="ARMCO">
+                <img src="images/acwa.png" alt="ACWA">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+                <img src="images/hadi.png" alt="Hadi">
+                <img src="images/swa.jpg" alt="swa" >
+                <img src="images/swcc logo.png" alt="SWCC">
+                <img src="images/Saudi_Electricity_Company_Logo.svg.png" alt="SEC">
+                <img src="images/sabic.jpg" alt="SABIC">
+                <img src="images/ARMCO.jpg" alt="ARMCO">
+                <img src="images/acwa.png" alt="ACWA">
+                <img src="images/alrouf.png" alt="Alrouf">
+                <img src="images/apec.png" alt="APEC">
+                <img src="images/ctci.png" alt="CTCI">
+                <img src="images/eppm.png" alt="EPPM">
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Electrical Projects</h4>
+                        <p>Comprehensive electrical projects and maintenance contracting services for all types of installations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>Instrumentation & Control</h4>
+                        <p>Advanced instrumentation and control systems supply, installation, maintenance, repair, and commissioning.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4>PLC & SCADA Systems</h4>
+                        <p>PLC, SCADA and Process Automation design, supply installation, commissioning, and maintenance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-fan"></i>
+                        </div>
+                        <h4>HVAC Systems</h4>
+                        <p>HVAC Systems supply, installation, and maintenance for optimal climate control solutions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <h4>Power Systems</h4>
+                        <p>UPS, Battery chargers, Battery banks design, supply, installation, testing and commissioning.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <h4>Solar PV Systems</h4>
+                        <p>Solar PV systems supply, erection, installation, testing and commissioning for sustainable energy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Projects</h2>
+            
+            <!-- Project Stats -->
+            <div class="row mb-5">
+                <div class="col-lg-3 col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center p-3 bg-white rounded shadow-sm">
+                        <div class="h2 text-primary mb-1">71+</div>
+                        <div class="text-muted">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center p-3 bg-white rounded shadow-sm">
+                        <div class="h2 text-success mb-1">10+</div>
+                        <div class="text-muted">Ongoing Projects</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center p-3 bg-white rounded shadow-sm">
+                        <div class="h2 text-warning mb-1">40+</div>
+                        <div class="text-muted">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-center p-3 bg-white rounded shadow-sm">
+                        <div class="h2 text-info mb-1">7+</div>
+                        <div class="text-muted">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Projects -->
+            <div class="row mb-5">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>SWCC RAS AL KHAIR</h4>
+                            <p>Gas calibration and certification system maintenance for critical water production facility.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-warning">Ongoing</span>
+                                <small class="text-muted">2023-2025</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>Water Bath Heater Project</h4>
+                            <p>Motor speed control system implementation for gas receiving area at Ras Al Khair facility.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-warning">Ongoing</span>
+                                <small class="text-muted">2023-2024</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>SWCC Al Khafji</h4>
+                            <p>Providing technical support for maintenance and operation works at the Khafji Production Unit.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-warning">Ongoing</span>
+                                <small class="text-muted">2022-2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>SCADA Upgradation</h4>
+                            <p>Advanced SCADA system upgradation for improved monitoring and control capabilities.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Completed</span>
+                                <small class="text-muted">2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>UPS & Battery Systems</h4>
+                            <p>Comprehensive UPS maintenance and battery replacement for critical power backup systems.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Completed</span>
+                                <small class="text-muted">2023-2024</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4>Siemens T3000 Maintenance</h4>
+                            <p>Comprehensive maintenance contract for Siemens T3000 systems with specialized technical support.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Completed</span>
+                                <small class="text-muted">2022-2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Categories -->
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h4 class="mb-4 text-center">Project Categories</h4>
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-industry fa-2x text-primary mb-2"></i>
+                                    <h6>Industrial</h6>
+                                    <p class="text-muted small mb-0">Power plants, refineries, manufacturing facilities</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-water fa-2x text-info mb-2"></i>
+                                    <h6>Water Treatment</h6>
+                                    <p class="text-muted small mb-0">Desalination plants, water processing systems</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-bolt fa-2x text-warning mb-2"></i>
+                                    <h6>Electrical Systems</h6>
+                                    <p class="text-muted small mb-0">Power distribution, control systems, automation</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-tools fa-2x text-success mb-2"></i>
+                                    <h6>Maintenance</h6>
+                                    <p class="text-muted small mb-0">Preventive maintenance, troubleshooting, repairs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+ 
+    <section id="gallery" class="section-padding">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Project Gallery</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.00.10_47fd705c.jpg" alt="Electrical Control Panel Installation" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <!-- <div class="gallery-content">
+                                <h5>Electrical Control Panel</h5>
+                                <p>Advanced control panel installation and wiring for industrial automation systems</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.00.10_bbd81cf6.jpg" alt="Instrumentation Setup" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <!-- <div class="gallery-content">
+                                <h5>Instrumentation & Control</h5>
+                                <p>Precision instrumentation setup for process monitoring and control systems</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.00.11_08bb107c.jpg" alt="PLC Programming" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <!-- <div class="gallery-content">
+                                <h5>PLC Programming</h5>
+                                <p>Programming and commissioning of PLC systems for automated industrial processes</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="400">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.00.12_c948c2a5.jpg" alt="Power Distribution System" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h5>FEDERAL WAVE CONTRACTING COMPANY has been awarded </h5>
+                                <p>FEDERAL WAVE CONTRACTING COMPANY has been awarded Technical Support & Maintenance contract of DCS T3000 for Al Jubail Phase 2A & 2B Saudi Arabia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="500">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.00.12_dd5cd640.jpg" alt="HVAC System Installation" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h5>FEDERAL WAVE CONTRACTING COMPANY has been awarded </h5>
+                                <p>FEDERAL WAVE CONTRACTING COMPANY has been awarded Technical Support & Maintenance contract of DCS T3000 for Al Jubail Phase 2A & 2B Saudi Arabia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="600">
+                <div class="gallery-item-container">
+                    <div class="gallery-item">
+                        <img src="images/gallery/WhatsApp Image 2025-05-26 at 20.03.49_33c62188.jpg" alt="Solar PV Installation" style="width: 100%; height: 250px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h5>FEDERAL WAVE CONTRACTING COMPANY has been awarded</h5>
+                                <p>FEDERAL WAVE CONTRACTING COMPANY has been awarded Technical Support & Maintenance contract of DCS T3000 for Al Jubail Phase 2A & 2B Saudi Arabia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+   <section id="contact" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="bg-white p-4 rounded-3 shadow-sm">
+                        <h4 class="mb-4">Send us a Message</h4>
+                        <form method="POST" id="form">
+                            <input type="hidden" name="access_key" value="07f389b4-3b1b-4517-bdf5-9ed75d8f276d">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="tel" name="phone" class="form-control" placeholder="Your Phone">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="subject" class="form-control" placeholder="Subject">
+                                </div>
+                            </div>
+                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            <button type="submit" class="btn-custom">Send Message</button>
+                            <div id="result"></div>
+                        </form>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Get in Touch</h4>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6>Phone</h6>
+                                <p>+966 13 361 3690</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div>
+                                <h6>Mobile</h6>
+                                <p>+966 53 374 2468</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6>Email</h6>
+                                <p>info@fwcontracting.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h6>Website</h6>
+                                <p>www.fwcontracting.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo">
+                        <img src="images/Frame 175.png" alt="" style="width: 70px;">Federal Wave
+                    </div>
+                    <p>Leading electromechanical contracting company in Saudi Arabia, providing world-class service and support to our clients since 2017.</p>
+                    
+                    <!-- Download Profile Button -->
+                    <a href="profile/FW-company-profile-2.pdf" class="download-profile-btn" target="_blank">
+                        <i class="fas fa-download"></i>
+                        Download Our Profile
+                    </a>
+                    
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#about" class="text-light text-decoration-none">About</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none">Services</a></li>
+                        <li><a href="#projects" class="text-light text-decoration-none">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Electrical Projects</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Instrumentation</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">PLC & SCADA</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">HVAC Systems</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Al Jubail, Saudi Arabia</li>
+                        <li><i class="fas fa-phone me-2"></i> +966 53 374 2468</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@fwcontracting.com</li>
+                        <li><i class="fas fa-globe me-2"></i> www.fwcontracting.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Federal Wave Contracting Company. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>ISO 9001, 14001, 45001 Certified Company</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <a href="#home" class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter animation with support for "+" suffix
+        function animateCounters() {
+            const counters = document.querySelectorAll('.animate-counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const targetValue = counter.getAttribute('data-target');
+                    const hasPlus = targetValue.includes('+');
+                    const target = parseInt(targetValue.replace('+', ''));
+                    const count = parseInt(counter.innerText.replace('+', '')) || 0;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        const newCount = Math.ceil(count + inc);
+                        counter.innerText = hasPlus ? newCount + '+' : newCount;
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = hasPlus ? target + '+' : target;
+                    }
+                };
+                updateCount();
+            });
+        }
+        // Trigger counter animation when hero section is in view
+        const heroSection = document.querySelector('.hero');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        observer.observe(heroSection);
+
+        // Form submission
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        result.innerHTML = "Please wait..."
+
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = "Form submitted successfully";
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 3000);
+                });
+        });
+        // Mobile menu close on link click
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Navbar active link highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+
+        // Optional: Add click to expand functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item-container');
+            
+            // Create modal for expanded view
+            const modal = document.createElement('div');
+            modal.className = 'gallery-modal';
+            modal.innerHTML = `
+                <div class="gallery-modal-content">
+                    <button class="gallery-modal-close">&times;</button>
+                    <img src="" alt="">
+                    <div class="text-center mt-3 text-white">
+                        <h4 class="modal-title"></h4>
+                        <p class="modal-description"></p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            const modalImg = modal.querySelector('img');
+            const modalTitle = modal.querySelector('.modal-title');
+            const modalDescription = modal.querySelector('.modal-description');
+            const closeBtn = modal.querySelector('.gallery-modal-close');
+            
+            // Add click event to gallery items
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const title = this.querySelector('h5').textContent;
+                    const description = this.querySelector('p').textContent;
+                    
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modal.classList.add('active');
+                });
+            });
+            
+            // Close modal events
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Service cards hover effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Project cards hover effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) rotateY(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateY(0deg)';
+            });
+        });
+
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+        card.addEventListener('click', function() {
+            const services = ['electrical', 'instrumentation', 'plc-scada', 'hvac', 'power-systems', 'solar-pv'];
+            const serviceType = services[index] || 'electrical';
+            window.location.href = `service-details.html?service=${serviceType}`;
+        });
+        });
+    </script>
+</body>
+</html> 

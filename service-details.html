@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details - Federal Wave</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #1e3d72;
+            --accent-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            padding-top: 80px; /* Account for fixed navbar */
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: white !important;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            background: none;
+        }
+
+        .navbar-toggler .fas {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .service-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .service-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-hero .lead {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+        }
+
+        .breadcrumb-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: white;
+        }
+
+        /* Service Content */
+        .service-content {
+            padding: 4rem 0;
+        }
+
+        .service-image {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .service-details {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .service-details h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .service-details h3 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: var(--bg-light);
+            padding: 3rem 0;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--secondary-color), #1a2332);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-details {
+                padding: 1.5rem;
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-content > * {
+            animation-delay: 0.2s;
+        }
+
+        .service-content > *:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .service-content > *:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="images/Frame 177.png" style="width: 150px;" alt="Federal Wave">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('about')">About</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="#" onclick="navigateTo('services')">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('projects')">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('gallery')">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('contact')">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" onclick="goBack()">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" onclick="goToServices()">Services</a></li>
+                    <li class="breadcrumb-item active" id="service-breadcrumb">Service Details</li>
+                </ol>
+            </nav>
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 id="service-title" data-aos="fade-right">Service Title</h1>
+                    <p class="lead" id="service-subtitle" data-aos="fade-right" data-aos-delay="200">Professional service description will appear here</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="service-icon-large" data-aos="zoom-in" data-aos-delay="400">
+                        <i id="service-icon" class="fas fa-cogs" style="font-size: 5rem; opacity: 0.8;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Service Image -->
+                    <div class="service-image fade-in">
+                        <img id="service-main-image" src="images/male-electrician-works-switchboard-with-electrical-connecting-cable_169016-16349.avif" alt="Service Image">
+                    </div>
+
+                    <!-- Service Details -->
+                    <div class="service-details fade-in">
+                        <h2 id="service-detail-title">About This Service</h2>
+                        <p id="service-description">Detailed service description will be populated here based on the selected service.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul class="features-list" id="service-features">
+                            <li>Feature 1 will be loaded dynamically</li>
+                            <li>Feature 2 will be loaded dynamically</li>
+                            <li>Feature 3 will be loaded dynamically</li>
+                        </ul>
+
+                        <h3>Our Approach</h3>
+                        <p id="service-approach">Our approach and methodology for this service will be described here.</p>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h4>Benefits</h4>
+                                <ul class="features-list" id="service-benefits">
+                                    <li>Benefit 1</li>
+                                    <li>Benefit 2</li>
+                                    <li>Benefit 3</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Applications</h4>
+                                <ul class="features-list" id="service-applications">
+                                    <li>Application 1</li>
+                                    <li>Application 2</li>
+                                    <li>Application 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Quick Stats -->
+                    <div class="fade-in">
+                        <div class="stats-card">
+                            <span class="stats-number" id="experience-years">30+</span>
+                            <span class="stats-label">Years Experience</span>
+                        </div>
+                        <div class="stats-card">
+                            <span class="stats-number" id="projects-completed">500+</span>
+                            <span class="stats-label">Projects Completed</span>
+                        </div>
+                        <div class="stats-card">
+                            <span class="stats-number" id="client-satisfaction">98%</span>
+                            <span class="stats-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Specifications -->
+                    <div class="service-details fade-in">
+                        <h3>Specifications</h3>
+                        <div id="service-specs">
+                            <p><strong>Service Type:</strong> <span id="spec-type">Professional</span></p>
+                            <p><strong>Duration:</strong> <span id="spec-duration">Varies</span></p>
+                            <p><strong>Support:</strong> <span id="spec-support">24/7</span></p>
+                            <p><strong>Warranty:</strong> <span id="spec-warranty">Included</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section text-center fade-in">
+                <div class="container">
+                    <h2>Ready to Get Started?</h2>
+                    <p class="lead mb-4">Contact us today to discuss your project requirements and get a customized solution.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <button class="btn btn-primary-custom" onclick="navigateTo('contact')">
+                            <i class="fas fa-phone me-2"></i>Get Quote
+                        </button>
+                        <button class="btn btn-outline-custom" onclick="navigateTo('contact')">
+                            <i class="fas fa-envelope me-2"></i>Contact Us
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="py-5" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="text-center mb-5">Related Services</h2>
+            <div class="row" id="related-services">
+                <!-- Related services will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo">
+                        <img src="images/Frame 175.png" alt="Federal Wave" style="width: 70px;">Federal Wave
+                    </div>
+                    <p>Leading electromechanical contracting company in Saudi Arabia, providing world-class service and support to our clients since 2017.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#about" class="text-light text-decoration-none">About</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none">Services</a></li>
+                        <li><a href="#projects" class="text-light text-decoration-none">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Electrical Projects</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Instrumentation</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">PLC & SCADA</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">HVAC Systems</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Al Jubail, Saudi Arabia</li>
+                        <li><i class="fas fa-phone me-2"></i> +966 53 374 2468</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@fwcontracting.com</li>
+                        <li><i class="fas fa-globe me-2"></i> www.fwcontracting.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Federal Wave Contracting Company. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>ISO 9001, 14001, 45001 Certified Company</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Service data based on your images
+        const serviceData = {
+            'electrical': {
+                title: 'Electrical Projects & Construction',
+                subtitle: 'Comprehensive electrical solutions for industrial, commercial and residential projects',
+                icon: 'fas fa-bolt',
+                description: 'Our electrical division provides complete electrical project management from design to commissioning. We specialize in LV, MV & HV electrical systems, switchboard installations, and comprehensive maintenance services.',
+                features: [
+                    'LV, MV & HV electrical system design and installation',
+                    'Switchboard and control panel manufacturing',
+                    'Cable installation and termination services',
+                    'Electrical maintenance and repair services',
+                    'Testing and commissioning of electrical systems',
+                    'Emergency electrical services'
+                ],
+                approach: 'We follow international standards and safety protocols for all electrical installations. Our team of certified electricians ensures compliance with local regulations while delivering high-quality, reliable electrical solutions.',
+                benefits: [
+                    'Certified and experienced technicians',
+                    'Compliance with safety standards',
+                    'Quality assurance and testing',
+                    '24/7 emergency support available'
+                ],
+                applications: [
+                    'Industrial facilities and plants',
+                    'Commercial buildings and offices',
+                    'Residential complexes',
+                    'Infrastructure projects'
+                ],
+                specs: {
+                    type: 'Electrical Installation',
+                    duration: '2-12 weeks',
+                    support: '24/7 Emergency',
+                    warranty: '2 years standard'
+                }
+            },
+            'instrumentation': {
+                title: 'Instrumentation & Control Systems',
+                subtitle: 'Advanced instrumentation and control solutions for process industries',
+                icon: 'fas fa-cogs',
+                description: 'We provide comprehensive instrumentation and control system services including supply, installation, maintenance, repair, and commissioning of advanced control systems for various industries.',
+                features: [
+                    'Control system design and engineering',
+                    'Instrument calibration and testing',
+                    'System integration and commissioning',
+                    'Preventive maintenance programs',
+                    'Emergency repair services',
+                    'System upgrades and modernization'
+                ],
+                approach: 'Our approach combines cutting-edge technology with proven methodologies to deliver reliable and accurate instrumentation solutions that optimize process efficiency and safety.',
+                benefits: [
+                    'Improved process efficiency',
+                    'Enhanced safety and reliability',
+                    'Reduced operational costs',
+                    'Advanced monitoring capabilities'
+                ],
+                applications: [
+                    'Oil & gas processing plants',
+                    'Chemical and petrochemical industries',
+                    'Power generation facilities',
+                    'Water treatment plants'
+                ],
+                specs: {
+                    type: 'Control Systems',
+                    duration: '4-16 weeks',
+                    support: '24/7 Technical',
+                    warranty: '1-3 years'
+                }
+            },
+            'plc-scada': {
+                title: 'PLC & SCADA Systems',
+                subtitle: 'Process automation with PLC, SCADA and DCS solutions',
+                icon: 'fas fa-microchip',
+                description: 'We are industry leaders in process automation with over 30 years of experience. Our expertise includes DCS, PLC, and SCADA system design, installation, and maintenance for various industrial applications.',
+                features: [
+                    'Distributed Control System (DCS) design and implementation',
+                    'Programmable Logic Controller (PLC) programming',
+                    'SCADA system development and integration',
+                    'HMI design and configuration',
+                    'System networking and communication',
+                    'Legacy system upgrades to modern PLC/DCS'
+                ],
+                approach: 'We utilize world-renowned systems from Siemens, GE, and other leading manufacturers to ensure reliability and performance. Our solutions are tailored to specific industry requirements.',
+                benefits: [
+                    'Improved operational efficiency',
+                    'Real-time monitoring and control',
+                    'Reduced manual intervention',
+                    'Enhanced process safety'
+                ],
+                applications: [
+                    'Manufacturing plants',
+                    'Process industries',
+                    'Power plants',
+                    'Water treatment facilities'
+                ],
+                specs: {
+                    type: 'Automation Systems',
+                    duration: '6-20 weeks',
+                    support: '24/7 Technical',
+                    warranty: '2 years standard'
+                }
+            },
+            'hvac': {
+                title: 'HVAC Systems',
+                subtitle: 'Climate control solutions for industrial, commercial and residential applications',
+                icon: 'fas fa-fan',
+                description: 'Federal Wave specializes in HVAC systems for industrial, commercial, and residential units. We provide complete solutions including design, supply, installation, and maintenance of various climate control systems.',
+                features: [
+                    'HVAC system design and calculation',
+                    'Chiller and AHU installation',
+                    'Ventilation system setup',
+                    'Duct installation and insulation',
+                    'System commissioning and testing',
+                    'Preventive maintenance services'
+                ],
+                approach: 'We focus on energy-efficient solutions that provide optimal comfort while minimizing operational costs. Our designs consider environmental factors and building requirements.',
+                benefits: [
+                    'Energy-efficient operation',
+                    'Optimal climate control',
+                    'Improved air quality',
+                    'Reduced operational costs'
+                ],
+                applications: [
+                    'Industrial facilities',
+                    'Commercial buildings',
+                    'Residential complexes',
+                    'Healthcare facilities'
+                ],
+                specs: {
+                    type: 'Climate Control',
+                    duration: '3-12 weeks',
+                    support: 'Maintenance Plans',
+                    warranty: '2-5 years'
+                }
+            },
+            'power-systems': {
+                title: 'Uninterrupted Power Supply Systems',
+                subtitle: 'Critical power solutions including UPS, battery systems and power management',
+                icon: 'fas fa-battery-full',
+                description: 'We provide comprehensive power supply solutions including UPS systems, battery chargers, and battery banks. Our solutions ensure continuous power supply for critical applications.',
+                features: [
+                    'UPS system design and installation',
+                    'Battery bank design and commissioning',
+                    'Power quality analysis',
+                    'Load bank testing',
+                    'Preventive maintenance programs',
+                    'Emergency power solutions'
+                ],
+                approach: 'Our power solutions are designed for maximum reliability and efficiency, ensuring your critical systems remain operational during power outages.',
+                benefits: [
+                    'Uninterrupted power supply',
+                    'Protection against power fluctuations',
+                    'Extended equipment life',
+                    'Improved system reliability'
+                ],
+                applications: [
+                    'Data centers',
+                    'Hospitals and healthcare',
+                    'Industrial processes',
+                    'Telecommunications'
+                ],
+                specs: {
+                    type: 'Power Systems',
+                    duration: '2-8 weeks',
+                    support: '24/7 Monitoring',
+                    warranty: '2-10 years'
+                }
+            },
+            'solar-pv': {
+                title: 'Solar PV Systems',
+                subtitle: 'Sustainable solar energy solutions for on-grid and off-grid applications',
+                icon: 'fas fa-solar-panel',
+                description: 'Our new Solar PV division specializes in design, supply, installation, and commissioning of various types of solar PV systems integrated with renowned brands for sustainable energy solutions.',
+                features: [
+                    'On-grid and off-grid solar PV systems',
+                    'Solar street lighting solutions',
+                    'Battery backup integration',
+                    'System monitoring and optimization',
+                    'Grid-tie inverter installation',
+                    'Solar panel mounting systems'
+                ],
+                approach: 'We use high-quality components from renowned manufacturers and provide customized solutions based on energy requirements and site conditions.',
+                benefits: [
+                    'Reduced electricity costs',
+                    'Environmental sustainability',
+                    'Energy independence',
+                    'Government incentives available'
+                ],
+                applications: [
+                    'Residential installations',
+                    'Commercial buildings',
+                    'Industrial facilities',
+                    'Street lighting projects'
+                ],
+                specs: {
+                    type: 'Solar Energy',
+                    duration: '2-6 weeks',
+                    support: 'Performance Monitoring',
+                    warranty: '10-25 years'
+                }
+            },
+            'erp-systems': {
+                title: 'Enterprise Resource Planning (ERP) Systems',
+                subtitle: 'Comprehensive ERP solutions with Odoo implementation for business optimization',
+                icon: 'fas fa-chart-line',
+                description: 'We provide innovative and upgraded ERP solutions that are business-friendly and user-friendly. Our Odoo-based ERP system integrates various business functions to power up your business operations.',
+                features: [
+                    'Complete ERP system installation with wide range of modules',
+                    'CRM, Sales, and Purchase management',
+                    'Inventory and Production planning',
+                    'Accounting and Financial management',
+                    'HR & Payroll administration',
+                    'E-commerce integration and BI Analytics'
+                ],
+                approach: 'We provide comprehensive support both online and offline, with local server installation for enterprises and easy migration from SAP-based systems.',
+                benefits: [
+                    'Streamlined business processes',
+                    'Real-time business insights',
+                    'Improved productivity within 7 days',
+                    'Easy migration from existing systems'
+                ],
+                applications: [
+                    'Manufacturing plants',
+                    'Trading companies',
+                    'Contracting firms',
+                    'Service organizations'
+                ],
+                specs: {
+                    type: 'Business Software',
+                    duration: '2-8 weeks',
+                    support: 'Online & Offline',
+                    warranty: '1 year support'
+                }
+            }
+        };
+
+        // Get service type from URL parameter or default to electrical
+        function getServiceType() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('service') || 'electrical';
+        }
+
+        // Populate page with service data
+        function populateServiceData() {
+            const serviceType = getServiceType();
+            const data = serviceData[serviceType] || serviceData['electrical'];
+            
+            // Update page content
+            document.getElementById('service-title').textContent = data.title;
+            document.getElementById('service-subtitle').textContent = data.subtitle;
+            document.getElementById('service-icon').className = data.icon;
+            document.getElementById('service-breadcrumb').textContent = data.title;
+            document.getElementById('service-detail-title').textContent = data.title;
+            document.getElementById('service-description').textContent = data.description;
+            document.getElementById('service-approach').textContent = data.approach;
+            
+            // Update features list
+            const featuresList = document.getElementById('service-features');
+            featuresList.innerHTML = data.features.map(feature => `<li>${feature}</li>`).join('');
+            
+            // Update benefits list
+            const benefitsList = document.getElementById('service-benefits');
+            benefitsList.innerHTML = data.benefits.map(benefit => `<li>${benefit}</li>`).join('');
+            
+            // Update applications list
+            const applicationsList = document.getElementById('service-applications');
+            applicationsList.innerHTML = data.applications.map(app => `<li>${app}</li>`).join('');
+            
+            // Update specifications
+            document.getElementById('spec-type').textContent = data.specs.type;
+            document.getElementById('spec-duration').textContent = data.specs.duration;
+            document.getElementById('spec-support').textContent = data.specs.support;
+            document.getElementById('spec-warranty').textContent = data.specs.warranty;
+            
+            // Update page title
+            document.title = `${data.title} - Federal Wave`;
+        }
+
+        // Generate related services
+        function generateRelatedServices() {
+            const currentService = getServiceType();
+            const relatedContainer = document.getElementById('related-services');
+            
+            const otherServices = Object.keys(serviceData).filter(key => key !== currentService).slice(0, 3);
+            
+            relatedContainer.innerHTML = otherServices.map(serviceKey => {
+                const service = serviceData[serviceKey];
+                return `
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="${service.icon}" style="font-size: 3rem; color: var(--primary-color);"></i>
+                                </div>
+                                <h5 class="card-title">${service.title}</h5>
+                                <p class="card-text text-muted">${service.subtitle}</p>
+                                <button class="btn btn-outline-primary" onclick="navigateToService('${serviceKey}')">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Navigation functions
+        function navigateToService(serviceType) {
+            window.location.href = `?service=${serviceType}`;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goToServices() {
+            // Navigate to services section - you can modify this URL
+            window.location.href = '#services';
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            populateServiceData();
+            generateRelatedServices();
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Add fade-in animation to elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            fadeElements.forEach(el => observer.observe(el));
+        });
+        function navigateTo(sectionId) {
+            // Redirect to index.html with hash
+            window.location.href = `index.html#${sectionId}`;
+        }
+        function goBack() {
+            window.location.href = 'index.html#home';
+        }
+        function goToServices() {
+            window.location.href = 'index.html#services';
+        }
+        
+    </script>
+</body>
+</html>
